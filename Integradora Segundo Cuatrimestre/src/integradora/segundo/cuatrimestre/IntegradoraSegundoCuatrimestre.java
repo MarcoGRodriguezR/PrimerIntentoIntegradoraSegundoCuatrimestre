@@ -1,20 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package integradora.segundo.cuatrimestre;
 
-/**
- *
- * @author DELL
- */
 public class IntegradoraSegundoCuatrimestre {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // <editor-fold defaultstate="collapsed" desc="Esto es temporal, una vez creado el menu principal, se iniciara el menu principal en vez del inventario">
+        InventarioProductos productos = new InventarioProductos();
+        productos.setVisible(true);
+        // </editor-fold>
     }
     
 }
