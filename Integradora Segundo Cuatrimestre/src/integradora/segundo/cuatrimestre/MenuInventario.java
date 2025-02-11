@@ -7,7 +7,7 @@ public class MenuInventario extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Metodos Obtener">
     public String ObtenerSeccion(){
-        return SeccionComboBox.getSelectedItem().toString();
+        return Seccion.getSelectedItem().toString();
     }
     // </editor-fold>
     
@@ -32,7 +32,7 @@ public class MenuInventario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        SeccionComboBox = new javax.swing.JComboBox<>();
+        Seccion = new javax.swing.JComboBox<>();
         ObjetosComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         BackToMenu = new javax.swing.JButton();
@@ -66,11 +66,16 @@ public class MenuInventario extends javax.swing.JFrame {
 
         jLabel1.setText("Seccion");
 
-        SeccionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Productos", "Electronicos" }));
-        SeccionComboBox.setSelectedIndex(-1);
-        SeccionComboBox.addActionListener(new java.awt.event.ActionListener() {
+        Seccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Productos", "Electronicos" }));
+        Seccion.setSelectedIndex(-1);
+        Seccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SeccionMouseClicked(evt);
+            }
+        });
+        Seccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeccionComboBoxActionPerformed(evt);
+                SeccionActionPerformed(evt);
             }
         });
 
@@ -97,52 +102,47 @@ public class MenuInventario extends javax.swing.JFrame {
             PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInvetarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(PanelInvetarioLayout.createSequentialGroup()
-                        .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInvetarioLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SeccionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ObjetosComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelInvetarioLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(BackToMenu)
-                        .addContainerGap(12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInvetarioLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4))
-                        .addContainerGap())))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(27, 27, 27)
+                        .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ObjetosComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(BackToMenu))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelInvetarioLayout.setVerticalGroup(
             PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInvetarioLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(SeccionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BackToMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ObjetosComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelInvetarioLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)))
+                        .addComponent(jButton4))
+                    .addGroup(PanelInvetarioLayout.createSequentialGroup()
+                        .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(Seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BackToMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ObjetosComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -204,7 +204,7 @@ public class MenuInventario extends javax.swing.JFrame {
         PanelAgregarProductoLayout.setVerticalGroup(
             PanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAgregarProductoLayout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
@@ -230,43 +230,46 @@ public class MenuInventario extends javax.swing.JFrame {
                         .addComponent(PanelAgregarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(PanelInvetario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ActivarInventario, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ActivarInventario)
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelInvetario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ActivarAgregarProducto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SeccionComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeccionComboBoxActionPerformed
-        String opcion = SeccionComboBox.getSelectedItem().toString();
+    private void SeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeccionActionPerformed
+        String opcion = Seccion.getSelectedItem().toString();
         ArrayList<String> list = new ArrayList<String>();
         
         ObjetosComboBox.removeAllItems();
         
-        if (opcion == "Productos"){
-            list.add("Orden de burritos");
-            list.add("Chicken Bake");
-        } else if (opcion == "Electronicos"){
-            list.add("Refri");
-            list.add("Congelador");
+        switch (opcion){
+            case "Productos":
+                list.add("Orden de burritos");
+                list.add("Chicken Bake");
+                list.add("anovrgesa");
+                break;
+            case "Electronicos":
+                list.add("Tostadora");
+                list.add("Microondas");
+                break;
         }
-        
-        for (String i : list){
-            ObjetosComboBox.addItem(i);
-        }
-    }//GEN-LAST:event_SeccionComboBoxActionPerformed
+
+        for (String elemento : list)
+            ObjetosComboBox.addItem(elemento);
+    }//GEN-LAST:event_SeccionActionPerformed
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
         Menu menu = new Menu();
@@ -296,6 +299,10 @@ public class MenuInventario extends javax.swing.JFrame {
     private void SeccionComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeccionComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SeccionComboBox1ActionPerformed
+
+    private void SeccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SeccionMouseClicked
+        // 2025 Feb 10: No puedo borrar esto . . .
+    }//GEN-LAST:event_SeccionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -340,7 +347,7 @@ public class MenuInventario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ObjetosComboBox;
     private java.awt.Panel PanelAgregarProducto;
     private java.awt.Panel PanelInvetario;
-    private javax.swing.JComboBox<String> SeccionComboBox;
+    private javax.swing.JComboBox<String> Seccion;
     private javax.swing.JComboBox<String> SeccionComboBox1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -356,4 +363,5 @@ public class MenuInventario extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -1,48 +1,73 @@
 package integradora.segundo.cuatrimestre;
 
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
+
 import java.util.ArrayList;
 
-public class Inventario {
-    // 2025 Feb 05: Temporal, en lo que hacemos una base de datos
-
-    /**
-     * La propiedad donde se guardan los productos, el primer indice es para productos normales, el segundo para electronicos
-     */
-    public ArrayList<ArrayList<Producto>> inventario;
-    
-    public Inventario(){
-        inventario = new ArrayList<>();
-        
-        // <editor-fold defaultstate="collapsed" desc="Productos">   
-        ArrayList<Producto> productos = new ArrayList<>();
-        productos.add(new Producto("Doritos"));
-        productos.add(new Producto("Pepsi"));
-        productos.add(new Producto("Coca Cola"));
-        productos.add(new Producto("Ruffles"));
-        productos.add(new Producto("Cheetos"));
-        productos.add(new Producto("Licuado"));
-        productos.add(new Producto("Taro bubble tea"));
-        productos.add(new Producto("Sandwich de pollo"));
-        // </editor-fold>
-        
-        // <editor-fold defaultstate="collapsed" desc="Electronicos">
-        ArrayList<Producto> electronicos = new ArrayList<>();
-        electronicos.add(new Producto("Tostadora"));
-        electronicos.add(new Producto("MicroOndas"));
-        // </editor-fold>
-        
-        inventario.add(productos);
-        inventario.add(electronicos);
-    }
-    public class Producto{
-        public String Nombre;
-        
-        public Producto(String nombre){
-            Nombre = nombre;
-        }
-        
-        public String toString(){
-            return Nombre;
-        }
-    }
-}
+//
+//public class Inventario {
+//    // 2025 Feb 05: Temporal, en lo que hacemos una base de datos
+//
+//    public static ArrayList<String> ObtenerSecciones(){
+//        ArrayList<String> lista = new ArrayList<>();
+//        lista.add("Productos");
+//        lista.add("Electronicos");
+//        return lista;
+//    }
+//    
+//    /**
+//     * La propiedad donde se guardan los productos, el primer indice es para productos normales, el segundo para electronicos
+//     */
+//    
+//    public Dictionary<String, ArrayList<String>> inventario = new Hashtable<>();
+//;
+//    
+//    
+//    public Inventario(){
+//        Creacion();
+//    }
+//    private void Creacion(){
+//            // 2025 Feb 11: Por que no puedo hacer esto???????
+//        // ArrayList<string> lista = {"Orden de burritos", "Chicken bake"};
+//        
+//        ArrayList<String> lista = new ArrayList<>();
+//        lista.add("Orden de burritos");
+//        lista.add("Chicken bake");
+//        lista.add("anborgesas");
+//        
+//        inventario.put(ObtenerSecciones().get(0), lista);
+//        
+//        lista.clear();
+//        lista.add("Bombona");
+//        lista.add("Tostadora");
+//        lista.add("Refri");
+//        
+//        inventario.put(ObtenerSecciones().get(1), lista);
+//    }
+//    
+//    public  ArrayList<String> ObtenerElementosEnSeccion(String seccion){
+//        System.out.println(inventario.get(0));
+//        System.out.println(inventario.get(1));
+//        try {
+//            return inventario.get(seccion);
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
+//    
+//    /*
+//    public class Producto{
+//        public String Nombre;
+//        
+//        public Producto(String nombre){
+//            Nombre = nombre;
+//        }
+//        
+//        public String toString(){
+//            return Nombre;
+//        }
+//    }
+//    */
+//}

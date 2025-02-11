@@ -69,6 +69,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void InventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventarioActionPerformed
         MenuInventario inventario = new MenuInventario();
+        
         inventario.setVisible(true);
         
         setVisible(false);
