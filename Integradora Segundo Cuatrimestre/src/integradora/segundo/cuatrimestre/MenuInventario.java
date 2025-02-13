@@ -12,6 +12,27 @@ public class MenuInventario extends javax.swing.JFrame {
     }
     // </editor-fold>
     
+    public Inventario.Elemento ObtenerElementoSeleccionado(){
+        // <editor-fold defaultstate="collapsed" desc="Obtener el elemento"> 
+        String objeto = null;
+        
+        // 2025 Feb 12: Esto esta en un bloque try catch por que esto se llama al inicio de cuando se corre el codigo
+        // Antes de que se le agreguen sus secciones, cosa que causa errores
+        try { return Main.inv.Encontrar(Objetos.getSelectedItem().toString());
+        } catch (Exception e) { return null; }
+        // </editor-fold>
+    }
+    
+    public void ActualizarTexto(){
+        Inventario.Elemento objeto = ObtenerElementoSeleccionado();
+        if (objeto == null) return;
+        
+        TextoPrincipal.selectAll();
+        TextoPrincipal.replaceSelection(null);
+        TextoPrincipal.insert(objeto.toString(), 0);
+      
+    }
+    
     /**
      * Creates new form InventarioProductos
      */
@@ -41,9 +62,9 @@ public class MenuInventario extends javax.swing.JFrame {
         Objetos = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         BackToMenu = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        BuscarInfo = new javax.swing.JButton();
+        UnidadesMas1 = new javax.swing.JButton();
+        UnidadesMenosUno = new javax.swing.JButton();
         ActivarInventario = new javax.swing.JRadioButton();
         PanelAgregarProducto = new java.awt.Panel();
         jButton6 = new javax.swing.JButton();
@@ -66,12 +87,11 @@ public class MenuInventario extends javax.swing.JFrame {
         TextoPrincipal.setEditable(false);
         TextoPrincipal.setColumns(20);
         TextoPrincipal.setRows(5);
-        TextoPrincipal.setText("Nombre del producto: tal\nUnidades: tantas\nPropiedad 1: x\nPropiedad 2: y\nPropiedad 3: z\n\nNotas: este es un producto, increible");
+        TextoPrincipal.setText("Presione el boton de \"Buscar info\"\nLas ventas por ahora seran aleatorizadas");
         jScrollPane1.setViewportView(TextoPrincipal);
 
         jLabel1.setText("Seccion");
 
-        Seccion.setSelectedIndex(-1);
         Seccion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SeccionMouseClicked(evt);
@@ -99,11 +119,26 @@ public class MenuInventario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Accion 1");
+        BuscarInfo.setText("Buscar Info");
+        BuscarInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarInfoActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Accion 2");
+        UnidadesMas1.setText("Unidades +1");
+        UnidadesMas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UnidadesMas1ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Accion 3");
+        UnidadesMenosUno.setText("Unidades - 1");
+        UnidadesMenosUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UnidadesMenosUnoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelInvetarioLayout = new javax.swing.GroupLayout(PanelInvetario);
         PanelInvetario.setLayout(PanelInvetarioLayout);
@@ -121,37 +156,44 @@ public class MenuInventario extends javax.swing.JFrame {
                             .addComponent(Seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Objetos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
                 .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(BackToMenu))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PanelInvetarioLayout.createSequentialGroup()
+                        .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelInvetarioLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(BackToMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelInvetarioLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(BuscarInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(UnidadesMas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInvetarioLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(UnidadesMenosUno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         PanelInvetarioLayout.setVerticalGroup(
             PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInvetarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BackToMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Objetos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelInvetarioLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jButton2)
+                        .addComponent(BuscarInfo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(UnidadesMas1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
-                    .addGroup(PanelInvetarioLayout.createSequentialGroup()
-                        .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(Seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BackToMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Objetos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(UnidadesMenosUno))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -208,7 +250,7 @@ public class MenuInventario extends javax.swing.JFrame {
                 .addGroup(PanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(SeccionComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         PanelAgregarProductoLayout.setVerticalGroup(
             PanelAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,12 +276,15 @@ public class MenuInventario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ActivarAgregarProducto)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(PanelAgregarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(PanelInvetario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ActivarInventario, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PanelInvetario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ActivarAgregarProducto)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(PanelAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ActivarInventario, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,20 +363,28 @@ public class MenuInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_SeccionMouseClicked
 
     private void ObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObjetosActionPerformed
-        // <editor-fold defaultstate="collapsed" desc="Obtener la seccion"> 
-        String objeto = null;
-        
-        // 2025 Feb 12: Esto esta en un bloque try catch por que esto se llama al inicio de cuando se corre el codigo
-        // Antes de que se le agreguen sus secciones, cosa que causa errores
-        try {
-            objeto = Objetos.getSelectedItem().toString();
-        } catch (Exception e) { return; }
-        // </editor-fold>
-        
-        TextoPrincipal.selectAll();
-        TextoPrincipal.replaceSelection(null);
-        TextoPrincipal.insert(Main.inv.Encontrar(Seccion.getSelectedItem().toString(), objeto).toString(), 0);
+        // 2025 Feb 13: No se como borrar esto
     }//GEN-LAST:event_ObjetosActionPerformed
+
+    private void BuscarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarInfoActionPerformed
+        ActualizarTexto();
+    }//GEN-LAST:event_BuscarInfoActionPerformed
+
+    private void UnidadesMas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnidadesMas1ActionPerformed
+        Inventario.Elemento objeto = ObtenerElementoSeleccionado();
+        if (objeto == null) return;
+        
+        objeto.Unidades++;
+        ActualizarTexto();
+    }//GEN-LAST:event_UnidadesMas1ActionPerformed
+
+    private void UnidadesMenosUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnidadesMenosUnoActionPerformed
+        Inventario.Elemento objeto = ObtenerElementoSeleccionado();
+        if (objeto == null) return;
+        
+        objeto.Unidades--;
+        ActualizarTexto();
+    }//GEN-LAST:event_UnidadesMenosUnoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,15 +426,15 @@ public class MenuInventario extends javax.swing.JFrame {
     private javax.swing.JRadioButton ActivarAgregarProducto;
     private javax.swing.JRadioButton ActivarInventario;
     private javax.swing.JButton BackToMenu;
+    private javax.swing.JButton BuscarInfo;
     private javax.swing.JComboBox<String> Objetos;
     private java.awt.Panel PanelAgregarProducto;
     private java.awt.Panel PanelInvetario;
     private javax.swing.JComboBox<String> Seccion;
     private javax.swing.JComboBox<String> SeccionComboBox1;
     private javax.swing.JTextArea TextoPrincipal;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton UnidadesMas1;
+    private javax.swing.JButton UnidadesMenosUno;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
