@@ -78,7 +78,7 @@
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="Seccion" min="-2" max="-2" attributes="0"/>
-                              <Component id="ObjetosComboBox" max="-2" attributes="0"/>
+                              <Component id="Objetos" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jScrollPane1" min="-2" pref="277" max="-2" attributes="0"/>
@@ -115,7 +115,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="ObjetosComboBox" alignment="3" max="-2" attributes="0"/>
+                              <Component id="Objetos" alignment="3" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -135,7 +135,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jTextArea1">
+            <Component class="javax.swing.JTextArea" name="TextoPrincipal">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
@@ -153,10 +153,7 @@
         <Component class="javax.swing.JComboBox" name="Seccion">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="Productos"/>
-                <StringItem index="1" value="Electronicos"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
             <Property name="selectedIndex" type="int" value="-1"/>
           </Properties>
@@ -168,7 +165,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="ObjetosComboBox">
+        <Component class="javax.swing.JComboBox" name="Objetos">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -180,6 +177,9 @@
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
           </AccessibilityProperties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ObjetosActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

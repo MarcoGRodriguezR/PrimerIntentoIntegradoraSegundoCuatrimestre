@@ -2,6 +2,7 @@
 package integradora.segundo.cuatrimestre;
 
 import java.util.ArrayList;
+import static javax.swing.JOptionPane.*;
 
 public class MenuInventario extends javax.swing.JFrame {
 
@@ -16,7 +17,11 @@ public class MenuInventario extends javax.swing.JFrame {
      */
     public MenuInventario() {
         initComponents();
+        
+        for (String seccion: Main.inv.Secciones)
+            Seccion.addItem(seccion);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,10 +35,10 @@ public class MenuInventario extends javax.swing.JFrame {
         ActivarAgregarProducto = new javax.swing.JRadioButton();
         PanelInvetario = new java.awt.Panel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        TextoPrincipal = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         Seccion = new javax.swing.JComboBox<>();
-        ObjetosComboBox = new javax.swing.JComboBox<>();
+        Objetos = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         BackToMenu = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -58,15 +63,14 @@ public class MenuInventario extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Nombre del producto: tal\nUnidades: tantas\nPropiedad 1: x\nPropiedad 2: y\nPropiedad 3: z\n\nNotas: este es un producto, increible");
-        jScrollPane1.setViewportView(jTextArea1);
+        TextoPrincipal.setEditable(false);
+        TextoPrincipal.setColumns(20);
+        TextoPrincipal.setRows(5);
+        TextoPrincipal.setText("Nombre del producto: tal\nUnidades: tantas\nPropiedad 1: x\nPropiedad 2: y\nPropiedad 3: z\n\nNotas: este es un producto, increible");
+        jScrollPane1.setViewportView(TextoPrincipal);
 
         jLabel1.setText("Seccion");
 
-        Seccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Productos", "Electronicos" }));
         Seccion.setSelectedIndex(-1);
         Seccion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -79,7 +83,12 @@ public class MenuInventario extends javax.swing.JFrame {
             }
         });
 
-        ObjetosComboBox.setMaximumSize(new java.awt.Dimension(256, 256));
+        Objetos.setMaximumSize(new java.awt.Dimension(256, 256));
+        Objetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ObjetosActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Objeto");
 
@@ -110,7 +119,7 @@ public class MenuInventario extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Seccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ObjetosComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Objetos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,14 +148,14 @@ public class MenuInventario extends javax.swing.JFrame {
                             .addComponent(BackToMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PanelInvetarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ObjetosComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Objetos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        ObjetosComboBox.getAccessibleContext().setAccessibleName("");
+        Objetos.getAccessibleContext().setAccessibleName("");
 
         ActivarInventario.setSelected(true);
         ActivarInventario.setText("Habilitar");
@@ -250,25 +259,29 @@ public class MenuInventario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeccionActionPerformed
-        String opcion = Seccion.getSelectedItem().toString();
-        ArrayList<String> list = new ArrayList<String>();
+        // <editor-fold defaultstate="collapsed" desc="Obtener la seccion"> 
+        String opcion = null;
         
-        ObjetosComboBox.removeAllItems();
+        // 2025 Feb 12: Esto esta en un bloque try catch por que esto se llama al inicio de cuando se corre el codigo
+        // Antes de que se le agreguen sus secciones, cosa que causa errores
+        try {
+            opcion = Seccion.getSelectedItem().toString();
+        } catch (Exception e) { return; }
+        // </editor-fold>
         
-        switch (opcion){
-            case "Productos":
-                list.add("Orden de burritos");
-                list.add("Chicken Bake");
-                list.add("anovrgesa");
-                break;
-            case "Electronicos":
-                list.add("Tostadora");
-                list.add("Microondas");
-                break;
+        // <editor-fold defaultstate="collapsed" desc="Agregar los elementos"> 
+        Objetos.removeAllItems();
+        try { 
+            ArrayList<String> elementos = new ArrayList<>();
+            
+            for (Inventario.Elemento elemento : Main.inv.Inventario.get(opcion))
+                Objetos.addItem(elemento.Nombre);
+        } catch (Exception e) {
+            System.out.println("Hubo un error al intentar acceder: " + opcion);
+            showMessageDialog(null, "Hubo un error al intentar acceder " + opcion, "Error", ERROR_MESSAGE);
+            Objetos.addItem("error");
         }
-
-        for (String elemento : list)
-            ObjetosComboBox.addItem(elemento);
+        // </editor-fold>
     }//GEN-LAST:event_SeccionActionPerformed
 
     private void BackToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToMenuActionPerformed
@@ -303,6 +316,22 @@ public class MenuInventario extends javax.swing.JFrame {
     private void SeccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SeccionMouseClicked
         // 2025 Feb 10: No puedo borrar esto . . .
     }//GEN-LAST:event_SeccionMouseClicked
+
+    private void ObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObjetosActionPerformed
+        // <editor-fold defaultstate="collapsed" desc="Obtener la seccion"> 
+        String objeto = null;
+        
+        // 2025 Feb 12: Esto esta en un bloque try catch por que esto se llama al inicio de cuando se corre el codigo
+        // Antes de que se le agreguen sus secciones, cosa que causa errores
+        try {
+            objeto = Objetos.getSelectedItem().toString();
+        } catch (Exception e) { return; }
+        // </editor-fold>
+        
+        TextoPrincipal.selectAll();
+        TextoPrincipal.replaceSelection(null);
+        TextoPrincipal.insert(Main.inv.Encontrar(Seccion.getSelectedItem().toString(), objeto).toString(), 0);
+    }//GEN-LAST:event_ObjetosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -344,11 +373,12 @@ public class MenuInventario extends javax.swing.JFrame {
     private javax.swing.JRadioButton ActivarAgregarProducto;
     private javax.swing.JRadioButton ActivarInventario;
     private javax.swing.JButton BackToMenu;
-    private javax.swing.JComboBox<String> ObjetosComboBox;
+    private javax.swing.JComboBox<String> Objetos;
     private java.awt.Panel PanelAgregarProducto;
     private java.awt.Panel PanelInvetario;
     private javax.swing.JComboBox<String> Seccion;
     private javax.swing.JComboBox<String> SeccionComboBox1;
+    private javax.swing.JTextArea TextoPrincipal;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -359,7 +389,6 @@ public class MenuInventario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
