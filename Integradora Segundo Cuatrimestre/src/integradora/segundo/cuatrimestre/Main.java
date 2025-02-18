@@ -6,7 +6,6 @@ import java.util.Hashtable;
 import java.util.List;
 
 public class Main {
-    
     public static Inventario inv;
     
     public static void main(String[] args) {

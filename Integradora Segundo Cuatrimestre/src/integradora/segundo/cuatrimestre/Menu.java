@@ -4,6 +4,8 @@
  */
 package integradora.segundo.cuatrimestre;
 
+import integradora.segundo.cuatrimestre.MenuInventario.MenuInventario;
+
 /**
  *
  * @author DELL

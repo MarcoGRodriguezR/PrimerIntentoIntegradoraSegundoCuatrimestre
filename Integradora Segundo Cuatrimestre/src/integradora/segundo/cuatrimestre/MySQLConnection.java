@@ -1,10 +1,10 @@
-package integradora.segundo.cuatrimestre;
+//package integradora.segundo.cuatrimestre;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.SQLException;
 
-public class MySQLConnection {
+//public class MySQLConnection {
 //    public static void main(String[] args) {
 //        String url = "jdbc:mysql://10.42.0.1:3306/SCOMM21";
 //        String user = "SCOMM21";
@@ -17,4 +17,4 @@ public class MySQLConnection {
 //            e.printStackTrace();
 //        }
 //    }
-}
+//}

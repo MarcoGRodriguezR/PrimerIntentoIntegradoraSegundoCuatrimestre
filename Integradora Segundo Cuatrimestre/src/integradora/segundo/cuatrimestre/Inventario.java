@@ -11,15 +11,24 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Inventario{
+    // TO DO: Electronicos, capacitores y resistencias
+    
     /**
      * Las secciones del inventario, es basciamente lo mismo que Inventario.Keys() en teoria, pero mas facil de llamar
      */
-    public ArrayList<String> Secciones = new ArrayList<>();
+    public ArrayList<String> Secciones = new ArrayList<>() {{
+        add("Productos");
+        add("Electronicos");
+    }};
     
     /**
      * Todos los productos, checha la clase Elemento para saber que propiedades tiene
      */
-    public Dictionary<String, ArrayList<Elemento>> Inventario = new Hashtable<>();
+    public Dictionary<String, ArrayList<Elemento>> Inventario = new Hashtable<String, ArrayList<Elemento>>() {{
+        put("Productos", new ArrayList<Elemento>());
+        put("Electronicos", new ArrayList<Elemento>());
+        //etc
+    }};
 
     // <editor-fold defaultstate="collapsed" desc="Agregar Elemetos">
     /**
@@ -90,6 +99,22 @@ public class Inventario{
     }
     // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="Encontrar tal">
+    public void EliminarElemento(String seccion, String nombre){
+        try {
+            for (int i = 0; i < Inventario.get(seccion).size(); i++){
+                if (Inventario.get(seccion).get(i).Nombre == nombre){
+                    Inventario.get(seccion).remove(i);
+                }
+            }
+        } catch (Exception e) {            
+            System.out.println("Hubo un error al intentar eliminar: " + nombre + "en la seccion " + seccion);
+            showMessageDialog(null, "Hubo un error al intentar eliminar " + nombre + "en la seccion " + seccion, "Error", ERROR_MESSAGE);
+        }
+    }
+        
+    // </editor-fold>
+    
     /**
      * La clase base de donde se basaran productos y electronicos
      */
@@ -101,28 +126,54 @@ public class Inventario{
          */
         public int Unidades;
         
-        public int Ventas;
+        public Dictionary<String, Object> Propiedades = new Hashtable<String, Object>(){{
+            put("Unidades", 0);
+            put("Ventas", 0);
+        }};
+        
         
         public Elemento(String nombre) {
-            Random rng = new Random();
-            
             Nombre = nombre;
-            Ventas = (int)(rng.nextDouble()*100);
+            
+            Random rng = new Random(); // 8
+            Propiedades.put("Ventas", (int)(rng.nextFloat() * 100));
         }
         public Elemento(String nombre, int unidades) {
-            Random rng = new Random();
-            
             Nombre = nombre;
-            Unidades = unidades;
-            Ventas = (int)(rng.nextDouble()*100);
+            Propiedades.put("Unidades", unidades);
+            
+            Random rng = new Random(); // 8
+            Propiedades.put("Ventas", (int)(rng.nextFloat() * 100));
         }
         
         /**
          * Utilizado para poner su informacion en textos
          * @return Devuelve un texto que contiene toda la informacion sobre este elemento
          */
-        public String toString() { return "Nombre del producto: " + Nombre + 
-                "\nUnidades: " + Unidades +
-                "\nVetnas: " + Ventas; } 
+        public String toString() { 
+            String texto = "Nombre del producto: " + Nombre;
+            
+            Enumeration<String> llaves = Propiedades.keys();
+            for (int i = 0; i < Propiedades.size(); i++){
+                String propiedad = llaves.nextElement();
+                texto += "\n" + propiedad + ": " + Propiedades.get(propiedad);
+            }
+
+            texto += "\n" + toStringExtras();
+                
+            return texto;
+        } 
+        public String toStringExtras(){
+            return "";      
+        }
+        
+        /**
+         * Reiniciara todos los valores, excepto nombre
+         */
+        public void ReiniciarValores(){
+            Random rng = new Random();
+            
+            Unidades = 0;
+        }
     }
 }
