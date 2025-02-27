@@ -15,8 +15,11 @@ import static javax.swing.JOptionPane.showMessageDialog;
 public class AgregarProducto extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Metodos, propiedades, etc"> 
+    public MenuInventario menu = null;
+    
     public void DeclararSeccionActual(String texto){ Seccion.setText(texto); }
     // </editor-fold>
+    
     /**
      * Creates new form AgregarProducto
      */
@@ -141,12 +144,28 @@ public class AgregarProducto extends javax.swing.JFrame {
             System.out.println("Hubo un error al intentar acceder el nombre");
             showMessageDialog(null, "Hubo un error al intentar acceder el nombre", "Error", ERROR_MESSAGE);
         }
-
+        if (nombre.equals("")){
+            System.out.println("Hubo un error al intentar acceder el nombre");
+            showMessageDialog(null, "Hubo un error al intentar acceder el nombre", "Error", ERROR_MESSAGE);
+            return;
+        }
+        
+        int unidades = 0;
+        try {unidades = Integer.parseInt(Unidades.getText().toString());} 
+        catch (Exception e) {
+            System.out.println("Hubo un error al intentar acceder las unidades");
+            showMessageDialog(null, "Hubo un error al intentar acceder las unidades", "Error", ERROR_MESSAGE);
+        }
+        
         if (seccion != null && nombre != null){
-            Main.inv.AgregarElemento(seccion, nombre);
+            Main.inv.AgregarElemento(seccion, nombre, unidades);
         } else {
             System.out.println("Error; seccion:" + seccion + "; nombre: " + nombre);
         }
+                       
+        menu.ActualizarListaDeElementos();
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_AgregarActionPerformed
 
     /**

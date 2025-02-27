@@ -56,17 +56,16 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="BuscarInfo" max="32767" attributes="0"/>
                           <Component id="AgregarUnidades" max="32767" attributes="0"/>
                           <Component id="QuitarUnidades" max="32767" attributes="0"/>
-                          <Component id="ReiniciarValor" alignment="0" max="32767" attributes="0"/>
                           <Component id="EliminarElemento" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="ModificarPropiedades" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="AgregarElemento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="AgregarElemento" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -87,10 +86,9 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" min="-2" pref="139" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="BuscarInfo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="AgregarUnidades" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="AgregarCuantas" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -101,11 +99,10 @@
                           <Component id="QuitarCuantas" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="ReiniciarValor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="EliminarElemento" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ModificarPropiedades" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="AgregarElemento" min="-2" max="-2" attributes="0"/>
@@ -191,14 +188,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="BuscarInfo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar Info"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscarInfoActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="AgregarUnidades">
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar Unidades"/>
@@ -213,14 +202,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="QuitarUnidadesActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="ReiniciarValor">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Reiniciar Valores"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReiniciarValorActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="EliminarElemento">
@@ -242,6 +223,14 @@
         <Property name="text" type="java.lang.String" value="            "/>
         <Property name="toolTipText" type="java.lang.String" value="Introduce cuantas unidades quieres quitar"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="ModificarPropiedades">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar Propiedades"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarPropiedadesActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

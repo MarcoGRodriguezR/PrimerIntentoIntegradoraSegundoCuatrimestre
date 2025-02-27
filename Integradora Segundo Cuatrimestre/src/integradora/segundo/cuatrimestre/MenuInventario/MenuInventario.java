@@ -104,13 +104,12 @@ public class MenuInventario extends javax.swing.JFrame {
         BackToMenu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextoPrincipal = new javax.swing.JTextArea();
-        BuscarInfo = new javax.swing.JButton();
         AgregarUnidades = new javax.swing.JButton();
         QuitarUnidades = new javax.swing.JButton();
-        ReiniciarValor = new javax.swing.JButton();
         EliminarElemento = new javax.swing.JButton();
         AgregarCuantas = new javax.swing.JTextField();
         QuitarCuantas = new javax.swing.JTextField();
+        ModificarPropiedades = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,13 +155,6 @@ public class MenuInventario extends javax.swing.JFrame {
         TextoPrincipal.setText("Presione el boton de \"Buscar info\"\nLas ventas por ahora seran aleatorizadas");
         jScrollPane1.setViewportView(TextoPrincipal);
 
-        BuscarInfo.setText("Buscar Info");
-        BuscarInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarInfoActionPerformed(evt);
-            }
-        });
-
         AgregarUnidades.setText("Agregar Unidades");
         AgregarUnidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,13 +166,6 @@ public class MenuInventario extends javax.swing.JFrame {
         QuitarUnidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 QuitarUnidadesActionPerformed(evt);
-            }
-        });
-
-        ReiniciarValor.setText("Reiniciar Valores");
-        ReiniciarValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReiniciarValorActionPerformed(evt);
             }
         });
 
@@ -196,6 +181,13 @@ public class MenuInventario extends javax.swing.JFrame {
 
         QuitarCuantas.setText("            ");
         QuitarCuantas.setToolTipText("Introduce cuantas unidades quieres quitar");
+
+        ModificarPropiedades.setText("Modificar Propiedades");
+        ModificarPropiedades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarPropiedadesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -222,14 +214,13 @@ public class MenuInventario extends javax.swing.JFrame {
                             .addComponent(QuitarCuantas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BuscarInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(AgregarUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(QuitarUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ReiniciarValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(EliminarElemento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(AgregarElemento)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(EliminarElemento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ModificarPropiedades)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(AgregarElemento))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -245,10 +236,9 @@ public class MenuInventario extends javax.swing.JFrame {
                     .addComponent(Objetos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BuscarInfo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AgregarUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AgregarCuantas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -257,10 +247,9 @@ public class MenuInventario extends javax.swing.JFrame {
                             .addComponent(QuitarUnidades)
                             .addComponent(QuitarCuantas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ReiniciarValor)
+                        .addComponent(EliminarElemento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EliminarElemento))
-                    .addComponent(jScrollPane1))
+                        .addComponent(ModificarPropiedades)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AgregarElemento)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -289,11 +278,8 @@ public class MenuInventario extends javax.swing.JFrame {
 
     private void ObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObjetosActionPerformed
         // 2025 Feb 13: No se como borrar esto
-    }//GEN-LAST:event_ObjetosActionPerformed
-
-    private void BuscarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarInfoActionPerformed
         ActualizarTexto();
-    }//GEN-LAST:event_BuscarInfoActionPerformed
+    }//GEN-LAST:event_ObjetosActionPerformed
 
     private void AgregarUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarUnidadesActionPerformed
         Inventario.Elemento objeto = ObtenerElementoSeleccionado();
@@ -304,13 +290,16 @@ public class MenuInventario extends javax.swing.JFrame {
         catch (Exception e) {
             System.out.println("Hubo un error al intentar acceder cuantas unidades agregar");
             showMessageDialog(null, "Hubo un error al intentar acceder cuantas unidades agregar", "Error", ERROR_MESSAGE);
+            return;
         }
         
         // 2025 Feb 13: Mmm, probablemente este try catch no es necesario por que ya se checa si no es null
-        try { objeto.Unidades+=unidades;} 
+        // TO DO: ya que java por alguna bendita razon no devuelve la referencia voy a tener que inventarme lago para sumar unidades
+        try { objeto.ModificarPropiedad("Unidades", +unidades);} 
         catch (Exception e){
             System.out.println("Hubo un error al intentar agregar unidades para : " + objeto.Nombre);
             showMessageDialog(null, "Hubo un error al intentar acceder " + objeto.Nombre, "Error", ERROR_MESSAGE);
+            return;
         }
         
         AgregarCuantas.setText(null);
@@ -328,7 +317,7 @@ public class MenuInventario extends javax.swing.JFrame {
         }
         
         // 2025 Feb 13: Mmm, probablemente este try catch no es necesario por que ya se checa si no es null
-        try { objeto.Unidades-=unidades;} 
+        try { objeto.ModificarPropiedad("Unidades", -unidades);} 
         catch (Exception e){
             System.out.println("Hubo un error al intentar quitar unidades para : " + objeto.Nombre);
             showMessageDialog(null, "Hubo un error al intentar acceder " + objeto.Nombre, "Error", ERROR_MESSAGE);
@@ -357,14 +346,6 @@ public class MenuInventario extends javax.swing.JFrame {
         ActualizarTexto();
     }//GEN-LAST:event_EliminarElementoActionPerformed
 
-    private void ReiniciarValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReiniciarValorActionPerformed
-        Inventario.Elemento objeto = ObtenerElementoSeleccionado();
-        if (objeto == null) return;
-        
-        objeto.ReiniciarValores();
-        ActualizarTexto();
-    }//GEN-LAST:event_ReiniciarValorActionPerformed
-
     private void AgregarElementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarElementoActionPerformed
         AgregarProducto agregar = new AgregarProducto();
         
@@ -378,9 +359,21 @@ public class MenuInventario extends javax.swing.JFrame {
         } catch (Exception e) { return; }
         // </editor-fold>
         
+        agregar.menu = this;
         agregar.DeclararSeccionActual(seccion);
         agregar.setVisible(true);
     }//GEN-LAST:event_AgregarElementoActionPerformed
+
+    private void ModificarPropiedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarPropiedadesActionPerformed
+        ModificarPropiedades modificar = new ModificarPropiedades();
+
+        modificar.Elemento = ObtenerElementoSeleccionado();
+        
+        modificar.Inicializar();
+        modificar.setVisible(true);
+        
+        modificar.main = this;
+    }//GEN-LAST:event_ModificarPropiedadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -423,13 +416,12 @@ public class MenuInventario extends javax.swing.JFrame {
     private javax.swing.JButton AgregarElemento;
     private javax.swing.JButton AgregarUnidades;
     private javax.swing.JButton BackToMenu;
-    private javax.swing.JButton BuscarInfo;
     private javax.swing.JButton EliminarElemento;
+    private javax.swing.JButton ModificarPropiedades;
     private javax.swing.JPopupMenu NoSeComoBorrarEsto;
     private javax.swing.JComboBox<String> Objetos;
     private javax.swing.JTextField QuitarCuantas;
     private javax.swing.JButton QuitarUnidades;
-    private javax.swing.JButton ReiniciarValor;
     private javax.swing.JComboBox<String> Seccion;
     private javax.swing.JTextArea TextoPrincipal;
     private javax.swing.JLabel jLabel1;

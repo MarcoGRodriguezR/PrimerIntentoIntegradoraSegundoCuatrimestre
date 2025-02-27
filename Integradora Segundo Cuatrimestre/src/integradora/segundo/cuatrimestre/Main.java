@@ -21,7 +21,7 @@ public class Main {
         inv.AgregarElemento(inv.Secciones.get(0), "Sopa de macaco");
         // </editor-fold>
 
-        // <editor-fold defaultstate="collapsed" desc="Seccion de Productos">
+        // <editor-fold defaultstate="collapsed" desc="Seccion de Electronicos">
         inv.AgregarElemento("Electronicos", "Microondas");
         inv.AgregarElemento(inv.Secciones.get(1), "Tostante");
         inv.AgregarElemento(inv.Secciones.get(1), "Frigorefri");

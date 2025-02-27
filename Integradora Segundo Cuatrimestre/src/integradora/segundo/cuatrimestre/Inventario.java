@@ -46,6 +46,22 @@ public class Inventario{
             Inventario.put(seccion, lista);
             Secciones.add(seccion);
         }
+    }    /**
+     * Agrega un elemento/producto/electronico a Inventario
+     * @param seccion El nombre de la seccion del elemento (productos, electronicos, etc.)
+     * @param nombre El nombre del producto
+     * @param unidades Las unidades inciales
+     */
+    public void AgregarElemento(String seccion, String nombre, int unidades){
+        try {
+            Inventario.get(seccion).add(new Elemento(nombre, unidades));
+        } catch (Exception e) {
+            ArrayList<Elemento> lista = new ArrayList<>();
+            lista.add(new Elemento(nombre, unidades));
+            
+            Inventario.put(seccion, lista);
+            Secciones.add(seccion);
+        }
     }
     
     /**
@@ -57,7 +73,7 @@ public class Inventario{
         Inventario.put(seccion, new ArrayList<>());
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Encontrar tal">
     /**
      * Utilizado para encontrar elementos en el inventario
@@ -126,11 +142,30 @@ public class Inventario{
          */
         public int Unidades;
         
+        /**
+         * Propiedades que va a tener este elemento, por defecto tiene "Unidades y Ventas"
+         * Es un diccionario de strings y objetos, la llave debe ser el nombre de la propiedad y el valor, el valor
+         */
         public Dictionary<String, Object> Propiedades = new Hashtable<String, Object>(){{
             put("Unidades", 0);
             put("Ventas", 0);
         }};
         
+        // <editor-fold defaultstate="collapsed" desc="ModificarPropiedad">
+        /**
+         * Utilizado para modificar propiedades de tipo int en este elemento, tengo que hacer esta estupidez por que java devuelve el valor y no la referencia con propiedad.get()
+         * @param propiedad El nombre de la propiedad
+         * @param valor El numero de la unidad a cambiar
+         */
+        public void ModificarPropiedad(String propiedad, int valor){
+            try {
+                Propiedades.put(propiedad, (int)Propiedades.get(propiedad) + valor);
+            } catch (Exception e) {
+                System.out.println("No existe la propiedad \"" + propiedad + "\", creando propiedad con ese nombre");
+                Propiedades.put(propiedad, valor);
+            }
+        }
+        // </editor-fold>
         
         public Elemento(String nombre) {
             Nombre = nombre;
@@ -153,27 +188,34 @@ public class Inventario{
         public String toString() { 
             String texto = "Nombre del producto: " + Nombre;
             
+            // <editor-fold defaultstate="collapsed" desc="Conseguir las llaves por que POR ALGUNA BENDITA RAZON TENGO QUE HACER ESTA BABOSADA para tenerlas en orden">
             Enumeration<String> llaves = Propiedades.keys();
+            
+            ArrayList<String> lista = new ArrayList<>();
+            for (int i = 0; i < Propiedades.size(); i++) lista.add(llaves.nextElement());
+            var listaBIEN = lista.reversed();
+            // </editor-fold>
+            
             for (int i = 0; i < Propiedades.size(); i++){
-                String propiedad = llaves.nextElement();
-                texto += "\n" + propiedad + ": " + Propiedades.get(propiedad);
+                texto += "\n" + listaBIEN.get(i) + ": " + Propiedades.get(listaBIEN.get(i));
             }
 
             texto += "\n" + toStringExtras();
                 
             return texto;
         } 
+        
+        /**
+         * Utilizado para agregar texto al final del metodo de "toString"
+         */
         public String toStringExtras(){
             return "";      
         }
         
-        /**
-         * Reiniciara todos los valores, excepto nombre
-         */
-        public void ReiniciarValores(){
+        public void ReiniciarUnidades(){
             Random rng = new Random();
             
-            Unidades = 0;
+            Propiedades.put("Unidades", 0);
         }
     }
 }
