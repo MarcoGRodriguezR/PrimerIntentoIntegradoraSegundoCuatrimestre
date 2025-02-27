@@ -110,6 +110,7 @@ public class MenuInventario extends javax.swing.JFrame {
         AgregarCuantas = new javax.swing.JTextField();
         QuitarCuantas = new javax.swing.JTextField();
         ModificarPropiedades = new javax.swing.JButton();
+        AgregarEliminarPropiedadesButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,7 +153,7 @@ public class MenuInventario extends javax.swing.JFrame {
         TextoPrincipal.setEditable(false);
         TextoPrincipal.setColumns(20);
         TextoPrincipal.setRows(5);
-        TextoPrincipal.setText("Presione el boton de \"Buscar info\"\nLas ventas por ahora seran aleatorizadas");
+        TextoPrincipal.setText("Las ventas por ahora seran aleatorizadas");
         jScrollPane1.setViewportView(TextoPrincipal);
 
         AgregarUnidades.setText("Agregar Unidades");
@@ -189,6 +190,13 @@ public class MenuInventario extends javax.swing.JFrame {
             }
         });
 
+        AgregarEliminarPropiedadesButton.setText("Agregar / Eliminar Propiedades");
+        AgregarEliminarPropiedadesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarEliminarPropiedadesButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -218,8 +226,9 @@ public class MenuInventario extends javax.swing.JFrame {
                             .addComponent(QuitarUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(EliminarElemento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(ModificarPropiedades)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(AgregarEliminarPropiedadesButton)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(ModificarPropiedades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(AgregarElemento))
                 .addContainerGap())
         );
@@ -236,8 +245,7 @@ public class MenuInventario extends javax.swing.JFrame {
                     .addComponent(Objetos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AgregarUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,10 +257,13 @@ public class MenuInventario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(EliminarElemento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ModificarPropiedades)))
+                        .addComponent(ModificarPropiedades)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AgregarEliminarPropiedadesButton))
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AgregarElemento)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         Objetos.getAccessibleContext().setAccessibleName("");
@@ -375,6 +386,17 @@ public class MenuInventario extends javax.swing.JFrame {
         modificar.main = this;
     }//GEN-LAST:event_ModificarPropiedadesActionPerformed
 
+    private void AgregarEliminarPropiedadesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarEliminarPropiedadesButtonActionPerformed
+        AgregarEliminarPropiedades agregarEliminar = new AgregarEliminarPropiedades();
+        
+        agregarEliminar.Elemento = ObtenerElementoSeleccionado();
+        
+        agregarEliminar.Inicializar();
+        agregarEliminar.setVisible(true);
+        
+        agregarEliminar.main = this;
+    }//GEN-LAST:event_AgregarEliminarPropiedadesButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -414,6 +436,7 @@ public class MenuInventario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AgregarCuantas;
     private javax.swing.JButton AgregarElemento;
+    private javax.swing.JButton AgregarEliminarPropiedadesButton;
     private javax.swing.JButton AgregarUnidades;
     private javax.swing.JButton BackToMenu;
     private javax.swing.JButton EliminarElemento;

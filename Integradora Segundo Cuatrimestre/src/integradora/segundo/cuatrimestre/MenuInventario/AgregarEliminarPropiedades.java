@@ -4,14 +4,44 @@
  */
 package integradora.segundo.cuatrimestre.MenuInventario;
 
+import integradora.segundo.cuatrimestre.Inventario;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author DELL
  */
 public class AgregarEliminarPropiedades extends javax.swing.JFrame {
 
-    // <editor-fold defaultstate="collapsed" desc="Metodos, Propiedades, etc">  
+    // <editor-fold defaultstate="collapsed" desc="Metodos, Propiedades, etc"> 
+    public ArrayList<String> Propiedades = new ArrayList<String>();
     public MenuInventario main;
+    public Inventario.Elemento Elemento;
+    
+    
+    public void IngresarPropiedadesAlComboBox(){
+        PropiedadActual.removeAllItems();
+        
+        // <editor-fold defaultstate="collapsed" desc="Obtener los nombres de las propiedades">
+        Enumeration<String> llaves = Elemento.Propiedades.keys();
+        System.out.println(Elemento.Nombre + " ha sido seleccionado para modificar propiedades");
+        ArrayList<String> lista = new ArrayList<>();
+        for (int i = 0; i < Elemento.Propiedades.size(); i++) lista.add(llaves.nextElement());
+        
+        var listaBien = lista.reversed();
+        // </editor-fold>
+        
+        // Agregar las propiedades a el combo box de propiedades
+        for (int i = 0; i < listaBien.size(); i ++){
+            PropiedadActual.addItem(listaBien.get(i));
+        }
+    }
+    public void Inicializar(){
+        IngresarPropiedadesAlComboBox();
+    }
     // </editor-fold>
     
     /**
@@ -19,6 +49,8 @@ public class AgregarEliminarPropiedades extends javax.swing.JFrame {
      */
     public AgregarEliminarPropiedades() {
         initComponents();
+        NombrePropiedad.setColumns(8);
+        ValorPropiedad.setColumns(8);
     }
 
     /**
@@ -31,6 +63,14 @@ public class AgregarEliminarPropiedades extends javax.swing.JFrame {
     private void initComponents() {
 
         Cancelar = new javax.swing.JButton();
+        EliminarPropiedad = new javax.swing.JButton();
+        PropiedadActual = new javax.swing.JComboBox<>();
+        PropiedadActualLabel = new javax.swing.JLabel();
+        Agregar = new javax.swing.JButton();
+        NombrePropiedadLabel = new javax.swing.JLabel();
+        NombrePropiedad = new javax.swing.JTextField();
+        ValorPropiedad = new javax.swing.JTextField();
+        ValorPropiedadLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -41,21 +81,71 @@ public class AgregarEliminarPropiedades extends javax.swing.JFrame {
             }
         });
 
+        EliminarPropiedad.setText("Eliminar Propiedad");
+        EliminarPropiedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarPropiedadActionPerformed(evt);
+            }
+        });
+
+        PropiedadActualLabel.setText("Propiedades");
+
+        Agregar.setText("Agregar Propiedad");
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
+
+        NombrePropiedadLabel.setText("Nombre Propiedad");
+
+        ValorPropiedadLabel.setText("Valor Propiedad");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(310, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(EliminarPropiedad, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                    .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Agregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PropiedadActual, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PropiedadActualLabel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NombrePropiedadLabel)
+                            .addComponent(NombrePropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ValorPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ValorPropiedadLabel))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Cancelar)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Cancelar)
+                    .addComponent(PropiedadActualLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EliminarPropiedad)
+                    .addComponent(PropiedadActual, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NombrePropiedadLabel)
+                    .addComponent(ValorPropiedadLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Agregar)
+                    .addComponent(NombrePropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ValorPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -66,6 +156,50 @@ public class AgregarEliminarPropiedades extends javax.swing.JFrame {
         dispose();
         main.ActualizarTexto();
     }//GEN-LAST:event_CancelarActionPerformed
+
+    private void EliminarPropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPropiedadActionPerformed
+        Elemento.Propiedades.remove((String)PropiedadActual.getSelectedItem());
+        main.ActualizarTexto();
+        IngresarPropiedadesAlComboBox();
+    }//GEN-LAST:event_EliminarPropiedadActionPerformed
+
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        // <editor-fold defaultstate="collapsed" desc="Obtener nombre de la propiedad a crear">
+        String nombre;
+        
+        try {
+            nombre = NombrePropiedad.getText();
+        } catch(Exception e){
+            System.out.println("Hubo un error al intentar acceder el nombre de la propiedad a crear");
+            showMessageDialog(null, "Hubo un error al intentar acceder el nombre de la propiedad a crear", "Error", ERROR_MESSAGE);
+            return;
+        }
+        // </editor-fold>
+        
+        // <editor-fold defaultstate="collapsed" desc="Obtener el valor de la propiedad a crear">
+        var valor = new Object();
+        
+        try {
+            valor = Integer.valueOf(ValorPropiedad.getText());
+        } catch(Exception e){
+            try {
+                valor = Double.valueOf(ValorPropiedad.getText());
+            } catch (Exception e2){
+                try {
+                    valor = ValorPropiedad.getText();
+                } catch (Exception e3){
+                    System.out.println("Hubo un error al intentar acceder el valor de la propiedad a crear");
+                    showMessageDialog(null, "Hubo un error al intentar acceder el valor de la propiedad a crear", "Error", ERROR_MESSAGE);
+                    return;
+                }
+            }
+        }
+        // </editor-fold>
+        
+        Elemento.Propiedades.put(nombre, valor);
+        main.ActualizarTexto();
+        IngresarPropiedadesAlComboBox();
+    }//GEN-LAST:event_AgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -93,6 +227,9 @@ public class AgregarEliminarPropiedades extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AgregarEliminarPropiedades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -103,6 +240,14 @@ public class AgregarEliminarPropiedades extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Agregar;
     private javax.swing.JButton Cancelar;
+    private javax.swing.JButton EliminarPropiedad;
+    private javax.swing.JTextField NombrePropiedad;
+    private javax.swing.JLabel NombrePropiedadLabel;
+    private javax.swing.JComboBox<String> PropiedadActual;
+    private javax.swing.JLabel PropiedadActualLabel;
+    private javax.swing.JTextField ValorPropiedad;
+    private javax.swing.JLabel ValorPropiedadLabel;
     // End of variables declaration//GEN-END:variables
 }

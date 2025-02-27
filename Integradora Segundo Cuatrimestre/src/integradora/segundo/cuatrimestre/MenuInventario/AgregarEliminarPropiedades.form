@@ -23,10 +23,30 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Cancelar" min="-2" pref="84" max="-2" attributes="0"/>
-              <EmptySpace pref="310" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="EliminarPropiedad" pref="141" max="32767" attributes="0"/>
+                  <Component id="Cancelar" min="-2" pref="84" max="-2" attributes="0"/>
+                  <Component id="Agregar" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="PropiedadActual" min="-2" pref="72" max="-2" attributes="0"/>
+                  <Component id="PropiedadActualLabel" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="NombrePropiedadLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="NombrePropiedad" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="ValorPropiedad" min="-2" max="-2" attributes="0"/>
+                          <Component id="ValorPropiedadLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="42" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -34,8 +54,27 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Cancelar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="271" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="PropiedadActualLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="EliminarPropiedad" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="PropiedadActual" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="NombrePropiedadLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ValorPropiedadLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Agregar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="NombrePropiedad" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ValorPropiedad" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -48,6 +87,51 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="EliminarPropiedad">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Eliminar Propiedad"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EliminarPropiedadActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="PropiedadActual">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="PropiedadActualLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Propiedades"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="Agregar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar Propiedad"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AgregarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="NombrePropiedadLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nombre Propiedad"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="NombrePropiedad">
+    </Component>
+    <Component class="javax.swing.JTextField" name="ValorPropiedad">
+    </Component>
+    <Component class="javax.swing.JLabel" name="ValorPropiedadLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor Propiedad"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -60,9 +60,10 @@
                           <Component id="QuitarUnidades" max="32767" attributes="0"/>
                           <Component id="EliminarElemento" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="ModificarPropiedades" min="-2" max="-2" attributes="0"/>
+                              <Component id="AgregarEliminarPropiedadesButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="ModificarPropiedades" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="AgregarElemento" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -86,8 +87,7 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="139" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="AgregarUnidades" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
@@ -102,11 +102,14 @@
                       <Component id="EliminarElemento" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ModificarPropiedades" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="AgregarEliminarPropiedadesButton" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="AgregarElemento" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -183,7 +186,7 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Presione el boton de &quot;Buscar info&quot;&#xa;Las ventas por ahora seran aleatorizadas"/>
+            <Property name="text" type="java.lang.String" value="Las ventas por ahora seran aleatorizadas"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -230,6 +233,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarPropiedadesActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="AgregarEliminarPropiedadesButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar / Eliminar Propiedades"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AgregarEliminarPropiedadesButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
