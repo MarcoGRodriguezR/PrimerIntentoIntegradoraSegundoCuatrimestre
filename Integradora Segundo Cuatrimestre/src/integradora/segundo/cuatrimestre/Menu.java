@@ -4,15 +4,15 @@
  */
 package integradora.segundo.cuatrimestre;
 
+import integradora.segundo.cuatrimestre.MenuInventario.MenuInventario;
+
 /**
  *
  * @author DELL
  */
 public class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Menu
-     */
+    
     public Menu() {
         initComponents();
     }
