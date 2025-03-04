@@ -305,8 +305,7 @@ public class MenuInventario extends javax.swing.JFrame {
         }
         
         // 2025 Feb 13: Mmm, probablemente este try catch no es necesario por que ya se checa si no es null
-        // TO DO: ya que java por alguna bendita razon no devuelve la referencia voy a tener que inventarme lago para sumar unidades
-        try { objeto.ModificarPropiedad("Unidades", +unidades);} 
+        try { objeto.Unidades += unidades;} 
         catch (Exception e){
             System.out.println("Hubo un error al intentar agregar unidades para : " + objeto.Nombre);
             showMessageDialog(null, "Hubo un error al intentar acceder " + objeto.Nombre, "Error", ERROR_MESSAGE);
@@ -328,7 +327,7 @@ public class MenuInventario extends javax.swing.JFrame {
         }
         
         // 2025 Feb 13: Mmm, probablemente este try catch no es necesario por que ya se checa si no es null
-        try { objeto.ModificarPropiedad("Unidades", -unidades);} 
+        try { objeto.Unidades -= unidades;} 
         catch (Exception e){
             System.out.println("Hubo un error al intentar quitar unidades para : " + objeto.Nombre);
             showMessageDialog(null, "Hubo un error al intentar acceder " + objeto.Nombre, "Error", ERROR_MESSAGE);

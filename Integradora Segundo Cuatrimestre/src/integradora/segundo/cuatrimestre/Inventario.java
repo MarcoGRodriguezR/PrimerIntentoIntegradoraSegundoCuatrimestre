@@ -147,7 +147,6 @@ public class Inventario{
          * Es un diccionario de strings y objetos, la llave debe ser el nombre de la propiedad y el valor, el valor
          */
         public Dictionary<String, Object> Propiedades = new Hashtable<String, Object>(){{
-            put("Unidades", 0);
             put("Ventas", 0);
         }};
         
@@ -186,7 +185,8 @@ public class Inventario{
          * @return Devuelve un texto que contiene toda la informacion sobre este elemento
          */
         public String toString() { 
-            String texto = "Nombre del producto: " + Nombre;
+            String texto = "Nombre del producto: " + Nombre +
+                    "\nUnidades: " + Unidades;
             
             // <editor-fold defaultstate="collapsed" desc="Conseguir las llaves por que POR ALGUNA BENDITA RAZON TENGO QUE HACER ESTA BABOSADA para tenerlas en orden">
             Enumeration<String> llaves = Propiedades.keys();
